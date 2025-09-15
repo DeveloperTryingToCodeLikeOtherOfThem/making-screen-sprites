@@ -2,7 +2,7 @@ namespace image {
    let images: Image[];
 
    export const BEHIND_SPRITES_PRIORITY = -1
-   export const SPRITE_FRONT_OF_HUD_Z = 200
+   export const SPRITE_FRONT_OF_HUD_Z_PRIORITY = 200
 
    export enum ImageFlags {
         None = 0,
@@ -29,7 +29,7 @@ namespace image {
 
    export function __preUpdate() {
        __autoDestroy()
-       __invisible
+       __invisible()
        __imageDestroyed()
    }
 
@@ -63,6 +63,13 @@ namespace image {
            )
        })
       }
+    }
+    
+// this will make issues
+     function __createAsDefaultedImage() {
+        scene.createRenderable(BEHIND_SPRITES_PRIORITY,(image) => {
+            // __create() = image this makes a core issue because it is a function 
+        })
     }
     
     //  for making the sprite to be up to the default screen width and height demension of the screen.
