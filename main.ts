@@ -1,4 +1,6 @@
 namespace image {
+   let images: Image[];
+
    export const BEHIND_SPRITES_PRIORITY = -1
    export const SPRITE_FRONT_OF_HUD_Z = 200
 
@@ -15,6 +17,14 @@ namespace image {
         if (on) flags |= flag
         else flags = ~(~flags | flag);
         __preUpdate()
+   }
+   
+   export function addImage(image: Image) {
+       images.push(image)
+   }
+
+   export function removeImage(image: Image) {
+       images.removeElement(image)
    }
 
    export function __preUpdate() {
